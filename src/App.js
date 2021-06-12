@@ -1,9 +1,12 @@
 import React from 'react'
+import Sidebar from './components/Sidebar'
+import Tasks from './components/Tasks'
 
 function App() {
   return (
     <div className="App">
-      <h1>test</h1>
+      <Sidebar />
+      <Tasks />
     </div>
   );
 }
