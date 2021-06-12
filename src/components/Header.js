@@ -1,9 +1,12 @@
 import React from 'react'
+import Login from './Login';
+import Logout from './Logout';
 
 const Header = () => {
     return (
         <div>
-            <h1>Header</h1>
+            <Login />
+            <Logout />
         </div>
     )
 }
