@@ -1,6 +1,9 @@
 import React,{useState} from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { GoogleLogout } from 'react-google-login';
+import Sidebar from './components/Sidebar'
+import Tasks from './components/TaskContainer'
+import Header from './components/Header'
 
 function App() {
   const [user, setUser] = useState(localStorage.getItem('user') ? JSON.parse(localStorage.getItem("user")) : '')
@@ -38,6 +41,9 @@ function App() {
           />
         </div>
       }
+      <Header />
+      <Sidebar />
+      <Tasks />
     </div>
   );
 }
