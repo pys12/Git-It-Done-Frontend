@@ -1,0 +1,9 @@
+.task-form {
+    border: 1px solid grey;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+Button {
+    margin-top: 10px;
+}

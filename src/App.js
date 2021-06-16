@@ -1,19 +1,26 @@
 import React from 'react'
-import Sidebar from './components/Sidebar'
-import Tasks from './components/TaskContainer'
+import { Route, Switch } from "react-router-dom";
+import Index from './pages/Index'
+import Home from './pages/Home'
 import Header from './components/Header'
+import Footer from './components/Footer'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 function App() {
+
+  
+  
   return (
     <div className="App">
-      <Container>
       <Header />
-      <Sidebar />
-      <Tasks />
-      <Button>Button</Button>
+      <Container>
+      <Switch>
+        <Route component={Home} path='/home'/>
+        <Route component={Index} path='/'/>
+      </Switch>
       </Container>
+      <Footer />
     </div>
   );
 }
