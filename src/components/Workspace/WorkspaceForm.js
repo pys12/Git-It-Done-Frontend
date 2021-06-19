@@ -13,11 +13,12 @@ const WorkspaceForm = ({ createWorkspace}) => {
         console.log(workspaceForm)
       };
     
-    const handleSubmit = (e) => {
+      
+      const handleSubmit = (e) => {
         e.preventDefault()
         const space = workspaceForm;
-        space.userId=JSON.parse(localStorage.getItem('user')).googleId
-        console.log(space.userId.googleId)
+        space.userId = JSON.parse(localStorage.getItem('user')).googleId
+        console.log(space)
         createWorkspace(space);
         setWorkspaceForm({
             title: "",
@@ -35,7 +36,7 @@ const WorkspaceForm = ({ createWorkspace}) => {
                 
                 <input type="submit" value='Add' />
             </form>
-            <TaskContainer/>
+            <TaskContainer />
         </div>
     )
 }

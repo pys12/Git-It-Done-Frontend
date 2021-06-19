@@ -49,10 +49,14 @@ const TaskContainer = () => {
     
     useEffect(() => getTasks(), []);
     
-    const loaded = () => {
-        return tasks.map((task, index) => (
-            <Task key={index} tasks={tasks} task={task} updateTask={updateTask} deleteTask={deleteTask}  />
-        ))
+  const loaded = () => {
+      const userId = JSON.parse(localStorage.getItem('user')).googleId
+      return tasks.map((task, index) => {
+         //console.log(userId)
+        if (task.userId === userId) {
+          return <Task key={index} tasks={tasks} task={task} updateTask={updateTask} deleteTask={deleteTask} />
+        }
+      })
     }
     const loading = () => {
         return <h1>loading now..</h1>

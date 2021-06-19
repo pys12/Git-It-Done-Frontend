@@ -2,7 +2,7 @@ import React from 'react'
 import Sidebar from '../../components/Sidebar/Sidebar'
 import Workspaces from '../../components/Workspace/Workspaces'
 import './Home.css'
-import { Layout} from 'antd'
+import { Layout } from 'antd'
 const Home = () => {
     const { Header, Content, Footer, Sider } = Layout;
     return (
