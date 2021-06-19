@@ -21,7 +21,7 @@ const Task = ({  task, updateTask,deleteTask }) => {
     return (
     <div>
         <button onClick={removeTask}>Delete</button>
-        <Link to={`/home/${task._id}`}><div>{task.title}</div></Link>
+        <Link to={`/home/tasks/${task._id}`}><div>{task.title}</div></Link>
         <div>{task.description}</div>
         <div>{task.categories}</div>
         <form onSubmit={handleSubmit}>

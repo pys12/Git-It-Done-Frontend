@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import Task from './Task'
-import Form from './Form'
+import TaskForm from './TaskForm'
 
 const TaskContainer = () => {
     const [tasks, setTasks] = useState(null)
@@ -60,10 +60,9 @@ const TaskContainer = () => {
     
     return (
         <div>
-            <h1>Tasks Area</h1>
             <div>Create Task</div>
             {/* add hover effects here */}
-           <Form createTask={createTask}/>
+           <TaskForm createTask={createTask}/>
             {tasks ? loaded() : loading()}
             
         </div>

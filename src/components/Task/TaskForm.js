@@ -8,14 +8,17 @@ const Form = ({createTask}) => {
     })
 
     const handleChange = (e) => {
-        console.log(e.target.name);
+       // console.log(e.target.name);
         setForm({...form, [e.target.name]: e.target.value });
-        console.log(form)
+        //console.log(form)
       };
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        createTask(form);
+        const card = form;
+        card.userId=JSON.parse(localStorage.getItem('user')).googleId
+        console.log(card.userId.googleId)
+        createTask(card);
         setForm({
             title: "",
             description: "",
