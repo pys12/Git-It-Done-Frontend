@@ -1,9 +1,14 @@
 import React,{useState,useEffect} from 'react'
 import Task from './Task'
 import TaskForm from './TaskForm'
+import { PlusCircleTwoTone } from '@ant-design/icons';
 
 const TaskContainer = () => {
-    const [tasks, setTasks] = useState(null)
+  const [tasks, setTasks] = useState(null)
+  const [showCreate, setShowCreate] = useState(false)
+  const onToggle =() => {
+     setShowCreate(!showCreate)
+  }
     
     const URL = "http://localhost:5000/api/tasks/";
     
@@ -26,7 +31,7 @@ const TaskContainer = () => {
     };
     
     const updateTask = async (task, id) => {
-        // make put request to create people
+        
         await fetch(URL + id, {
           method: "put",
           headers: {
@@ -64,9 +69,9 @@ const TaskContainer = () => {
     
     return (
         <div>
-            <div>Create Task</div>
-            {/* add hover effects here */}
-           <TaskForm createTask={createTask}/>
+            <div>Create Task<PlusCircleTwoTone twoToneColor="#52c41a" onClick={onToggle}/></div>
+
+            {showCreate && <TaskForm createTask={createTask} showCreate={showCreate} setShowCreate={setShowCreate} />}
             {tasks ? loaded() : loading()}
             
         </div>

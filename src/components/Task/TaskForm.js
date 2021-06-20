@@ -1,10 +1,10 @@
 import React,{useState} from 'react'
 
-const Form = ({createTask}) => {
+const Form = ({createTask,showCreate,setShowCreate}) => {
     const [form, setForm] = useState({
         title: "",
         description: "",
-        categories:""
+        status:""
     })
 
     const handleChange = (e) => {
@@ -22,8 +22,10 @@ const Form = ({createTask}) => {
         setForm({
             title: "",
             description: "",
-            categories:""
+            status:""
         })
+         setShowCreate(!showCreate)
+
     }
     return (
         <div>
@@ -32,8 +34,8 @@ const Form = ({createTask}) => {
                 <input type="text" name='title' placeholder='Add a task' value={form.title} onChange={handleChange}/>
                 <label>Description</label>
                 <input type="text" name='description' placeholder='Add a detailed description' value={form.description} onChange={handleChange}/>
-                <label>Categories</label>
-                <input type="text" name='categories' placeholder='Pick a category' value={form.categories} onChange={handleChange}/>
+                <label>Status</label>
+                <input type="text" name='status' placeholder='Pick a status' value={form.status} onChange={handleChange}/>
                 <input type="submit" value='Save' />
             </form>
         </div>

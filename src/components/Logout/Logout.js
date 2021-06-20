@@ -1,6 +1,7 @@
 import React from 'react'
 import { GoogleLogout } from 'react-google-login';
 import { Redirect } from 'react-router-dom'
+import './Logout.css'
 
 const Logout = ({user,clientId,setUser}) => {
     

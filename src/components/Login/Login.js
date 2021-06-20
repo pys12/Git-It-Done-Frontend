@@ -1,7 +1,7 @@
 import React from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { Redirect } from 'react-router-dom'
-
+import './Login.css'
 const Login = ({user,clientId,setUser}) => {
     
     
@@ -34,8 +34,8 @@ const Login = ({user,clientId,setUser}) => {
             />
         : <div>
             <Redirect to='/home' />
-            <h3>Welcome {user.name}</h3>
-            <img src={user.imageUrl} alt="profilePic" />
+            <img className='profilePic' src={user.imageUrl} alt="profilePic" />
+            {/* <h3>Welcome {user.name}</h3> */}
         </div>
         }
         

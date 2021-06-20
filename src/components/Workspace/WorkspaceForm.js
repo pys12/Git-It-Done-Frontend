@@ -1,6 +1,7 @@
-import React,{useState} from 'react'
-import TaskContainer from '../Task/TaskContainer';
-const WorkspaceForm = ({ createWorkspace}) => {
+import React, { useState } from 'react'
+
+
+const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
 
     const [workspaceForm, setWorkspaceForm] = useState({
         title: "",
@@ -25,6 +26,7 @@ const WorkspaceForm = ({ createWorkspace}) => {
             statuses: "",
             
         })
+        setShowCreate(!showCreate)
     }
     return (
         <div>
@@ -36,7 +38,7 @@ const WorkspaceForm = ({ createWorkspace}) => {
                 
                 <input type="submit" value='Add' />
             </form>
-            <TaskContainer />
+            
         </div>
     )
 }

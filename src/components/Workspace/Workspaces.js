@@ -1,9 +1,15 @@
 import React,{useState,useEffect} from 'react'
 import WorkspaceForm from './WorkspaceForm'
 import Workspace from './Workspace'
+
+import { PlusCircleTwoTone } from '@ant-design/icons';
 const Workspaces = () => {
-    const [workspaces, setWorkspaces] = useState(null)
-    
+  const [workspaces, setWorkspaces] = useState(null)
+  
+  const [showCreate, setShowCreate] = useState(false)
+  const onToggle =() => {
+     setShowCreate(!showCreate)
+  }
     const URL = "http://localhost:5000/api/workspaces/";
     
     
@@ -73,12 +79,11 @@ const Workspaces = () => {
     
     return (
         <div>
-            <div>Create Workspace</div>
-            {/* add hover effects here */}
-           <WorkspaceForm createWorkspace={createWorkspace}/>
+        <div>Create Workspace<PlusCircleTwoTone twoToneColor="#52c41a" onClick={onToggle}/></div>
+            {showCreate && <WorkspaceForm createWorkspace={createWorkspace} showCreate={showCreate} setShowCreate={setShowCreate} />}
             {workspaces ? loaded() : loading()}
             
-        </div>
+      </div>
     )
 }
 
