@@ -12,7 +12,6 @@ const Sidebar = () => {
                 <Menu.Item >Sidebar</Menu.Item>
             </SubMenu> */}
              <div>Sidebar</div>
-             <div>Search Bar</div>
              <div><Workspaces /></div>
             {/* </Menu> */}
         </div>

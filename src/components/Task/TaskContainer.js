@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import Task from './Task'
 import TaskForm from './TaskForm'
 import { PlusCircleTwoTone } from '@ant-design/icons';
-
+import Search from '../Search/Search'
 const TaskContainer = (props) => {
   
   const [tasks, setTasks] = useState(null)
@@ -51,6 +51,14 @@ const TaskContainer = (props) => {
         getTasks();
 
     }
+    const searchTask = (searchTerm) => {
+      console.log('search term:'+ searchTerm)
+       if (searchTerm === '') {
+          setTasks(tasks)
+       } else {
+        setTasks(tasks.filter((searched)=> searched.title.toLowerCase() === searchTerm.toLowerCase()))
+        }
+    }
  
     
     useEffect(() => getTasks(), []);
@@ -70,10 +78,9 @@ const TaskContainer = (props) => {
     
     return (
         <div>
-           
-        <TaskForm createTask={createTask} />
+            <Search search={searchTask}/>
+            <TaskForm createTask={createTask} />
             {tasks ? loaded() : loading()}
-            
         </div>
     )
 }

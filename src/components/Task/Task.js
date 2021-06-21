@@ -24,8 +24,8 @@ const Task = ({ task, updateTask, deleteTask }) => {
         e.preventDefault()
         updateTask(editForm, task._id)
         setShowEdit(!setShowEdit)
-        
     }
+    
     return (
         <div>
             <Space direction="vertical">
