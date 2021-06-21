@@ -30,23 +30,23 @@ const Task = ({ task, updateTask, deleteTask }) => {
         <div>
             <Space direction="vertical">
                 <Card title={task.status} style={{ width: 300 }}>
-                    <div>Delete<DeleteTwoTone twoToneColor="#52c41a" onClick={removeTask}/></div>
-                    <div>Edit<EditTwoTone twoToneColor="#52c41a" onClick={onToggle}/></div>
-                    <Link to={`/home/tasks/${task._id}`}><div>{task.title}</div></Link>
+                    <div>
+                        <Link to={`/home/tasks/${task._id}`}>{task.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle}/><DeleteTwoTone twoToneColor="#52c41a" onClick={removeTask}/>
+                    </div>
                     <div>{task.description}</div>
+                    {showEdit &&
+                        <form onSubmit={handleSubmit}>
+                            <label>Title</label>
+                            <input type="text" name='title' placeholder='Add a task' value={editForm.title} onChange={handleChange} />
+                            <label>Description</label>
+                            <input type="text" name='description' placeholder='Add a detailed description' value={editForm.description} onChange={handleChange} />
+                            <label>Status</label>
+                            <input type="text" name='status' placeholder='Pick a status' value={editForm.status} onChange={handleChange} />
+                            <input type="submit" value='Update' />
+                        </form>
+                    }
                 </Card>
             </Space>
-            {showEdit &&
-                <form onSubmit={handleSubmit}>
-                    <label>Title</label>
-                    <input type="text" name='title' placeholder='Add a task' value={editForm.title} onChange={handleChange} />
-                    <label>Description</label>
-                    <input type="text" name='description' placeholder='Add a detailed description' value={editForm.description} onChange={handleChange} />
-                    <label>Status</label>
-                    <input type="text" name='status' placeholder='Pick a status' value={editForm.status} onChange={handleChange} />
-                    <input type="submit" value='Update' />
-                </form>
-            }
     </div>
     )
 }

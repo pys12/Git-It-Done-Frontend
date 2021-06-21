@@ -1,7 +1,20 @@
 import React,{useState} from 'react'
+import { Modal, Button } from 'antd';
 
-const Form = ({createTask,showCreate,setShowCreate}) => {
-    const [form, setForm] = useState({
+const TaskForm = ({ createTask }) => {
+     
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+      setIsModalVisible(true);
+    };
+  
+  
+    const handleCancel = () => {
+      setIsModalVisible(false);
+    };
+
+    const [taskForm, setTaskForm] = useState({
         title: "",
         description: "",
         status:""
@@ -9,37 +22,42 @@ const Form = ({createTask,showCreate,setShowCreate}) => {
 
     const handleChange = (e) => {
        // console.log(e.target.name);
-        setForm({...form, [e.target.name]: e.target.value });
+       setTaskForm({...taskForm, [e.target.name]: e.target.value });
         //console.log(form)
       };
     
     const handleSubmit = (e) => {
         e.preventDefault()
-        const card = form;
+        const card = taskForm;
         card.userId=JSON.parse(localStorage.getItem('user')).googleId
         console.log(card.userId.googleId)
         createTask(card);
-        setForm({
+        setTaskForm({
             title: "",
             description: "",
             status:""
         })
-         setShowCreate(!showCreate)
+        setIsModalVisible(false);
+
 
     }
     return (
-        <div>
-             <form  onSubmit={handleSubmit}>
-                <label>Title</label>
-                <input type="text" name='title' placeholder='Add a task' value={form.title} onChange={handleChange}/>
-                <label>Description</label>
-                <input type="text" name='description' placeholder='Add a detailed description' value={form.description} onChange={handleChange}/>
-                <label>Status</label>
-                <input type="text" name='status' placeholder='Pick a status' value={form.status} onChange={handleChange}/>
-                <input type="submit" value='Save' />
+            <div>
+             <Button type="primary" onClick={showModal}> Create </Button>
+             <Modal title="Create a task" visible={isModalVisible} onOk={handleSubmit} onCancel={handleCancel}>
+             <form>
+                <p><label>Title</label></p>
+                <p><input type="text" name='title' placeholder='Add a task' value={taskForm.title} onChange={handleChange}/></p>
+                <p><label>Description</label></p>
+                <p> <input type="text" name='description' placeholder='Add a detailed description' value={taskForm.description} onChange={handleChange}/></p>
+                <p><label>Status</label></p>
+                <p> <input type="text" name='status' placeholder='Pick a status' value={taskForm.status} onChange={handleChange}/></p>
             </form>
-        </div>
+            </Modal>
+            </div>
+         
+        
     )
 }
 
-export default Form
+export default TaskForm

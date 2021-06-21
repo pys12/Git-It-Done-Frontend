@@ -53,26 +53,31 @@ const Workspaces = () => {
     }
     useEffect(() => getWorkspaces(), []);
     
-    const loaded = () => {
-      const userId = JSON.parse(localStorage.getItem('user')).googleId
-      return workspaces.map((workspace, index) => {
-        return workspace.userId.map((workspaceId, index) => {
-          console.log(` workid ${workspaceId}`)
-          console.log(` userid ${userId}`)
-          if (workspaceId === userId)
-            return <Workspace key={index} workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />
-          
-        })
-        })
-    }
     // const loaded = () => {
     //   const userId = JSON.parse(localStorage.getItem('user')).googleId
-    //   return workspaces.filter((workspace) => {
-    //       if(workspace.userId.includes(userId)){
-    //         return <Workspace  workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />
-    //       }
-    //   })
+    //   return workspaces.map((workspace, index) => {
+    //     return workspace.userId.map((workspaceId, index) => {
+    //       console.log(` workid ${workspaceId}`)
+    //       console.log(` userid ${userId}`)
+    //       if (workspaceId === userId)
+    //         return <Workspace key={index} workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />
+          
+    //     })
+    //     })
     // }
+    const loaded = () => {
+      const userId = JSON.parse(localStorage.getItem('user')).googleId
+      const spaces = []
+      const space =  workspaces.forEach((workspace) => {
+        if (workspace.userId.includes(userId)) {
+            spaces.push(<Workspace  workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />)
+            
+          }
+      })
+      
+      return spaces
+    }
+  
     const loading = () => {
         return <h1>loading now..</h1>
     }

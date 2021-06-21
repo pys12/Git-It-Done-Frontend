@@ -3,22 +3,22 @@ import Task from './Task'
 import TaskForm from './TaskForm'
 import { PlusCircleTwoTone } from '@ant-design/icons';
 
-const TaskContainer = () => {
+const TaskContainer = (props) => {
+  
   const [tasks, setTasks] = useState(null)
-  const [showCreate, setShowCreate] = useState(false)
-  const onToggle =() => {
-     setShowCreate(!showCreate)
-  }
-    
+  
+  
+    //const id = props.match.params._id
     const URL = "http://localhost:5000/api/tasks/";
-    
+    //const URL2 = `http://localhost:5000/api/workspaces/`;
     
     const getTasks = async () => {
         const response = await fetch(URL);
         const data = await response.json();
         setTasks(data);
     };
-    const createTask = async (task) => {
+  
+    const createTask = async (task,id) => {
         await fetch(URL, {
           method: "post",
           headers: {
@@ -51,6 +51,7 @@ const TaskContainer = () => {
         getTasks();
 
     }
+ 
     
     useEffect(() => getTasks(), []);
     
@@ -69,9 +70,8 @@ const TaskContainer = () => {
     
     return (
         <div>
-            <div>Create Task<PlusCircleTwoTone twoToneColor="#52c41a" onClick={onToggle}/></div>
-
-            {showCreate && <TaskForm createTask={createTask} showCreate={showCreate} setShowCreate={setShowCreate} />}
+           
+        <TaskForm createTask={createTask} />
             {tasks ? loaded() : loading()}
             
         </div>
