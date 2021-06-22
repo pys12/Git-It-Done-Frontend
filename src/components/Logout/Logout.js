@@ -1,6 +1,9 @@
 import React from 'react'
 import { GoogleLogout } from 'react-google-login';
 import { Redirect } from 'react-router-dom'
+import './Logout.css'
+import { PoweroffOutlined  } from "@ant-design/icons";
+import { Tooltip } from 'antd';
 
 const Logout = ({user,clientId,setUser}) => {
     
@@ -9,19 +12,20 @@ const Logout = ({user,clientId,setUser}) => {
         console.log('logout success!')
         setUser('')
         console.log(JSON.parse(localStorage.getItem("user")))
-        localStorage.clear()
+        localStorage.removeItem("user")
     }
     
     return (
         <div>
             {user !== '' ?
-            <div>
+            <div className='logout-icon'>
             <GoogleLogout
                 clientId={clientId}
                 render={renderProps => (
-                    <button onClick={renderProps.onClick}>Logout</button>
+                    <Tooltip title='Logout' color={"#c2dada"}>
+                        <span><PoweroffOutlined onClick={renderProps.onClick} /></span>
+                    </Tooltip>
                     )}
-                buttonText="Logout"
                 onLogoutSuccess={logout}
             />
             <Redirect to='/home'/>  
