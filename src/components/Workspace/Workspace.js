@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
 import { EditTwoTone,DeleteTwoTone } from '@ant-design/icons';
-
+import './Workspace.css'
 const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
     
     
@@ -26,7 +26,7 @@ const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
         setShowEdit(!showEdit)
     }
     return (
-        <div>
+        <div className='workspace'>
             <div>
             <Link to={`/home/workspaces/${workspace._id}`}>{workspace.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle} /><DeleteTwoTone twoToneColor="#52c41a" onClick={removeWorkspace} />
             </div>

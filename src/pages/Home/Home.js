@@ -9,9 +9,9 @@ const Home = () => {
     return (
         <div className='home'>
             <Layout >
-                <Sider style={{ background:"pink" }}><Sidebar /></Sider>
-                {/* <Link to='/home/workspaces'><TaskContainer /></Link> */}
-                {/* <TaskContainer/> */}
+                <Sider ><Sidebar /></Sider>
+                <TaskContainer />
+                
             </Layout  >
                 
         </div>

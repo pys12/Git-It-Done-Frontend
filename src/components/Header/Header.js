@@ -3,7 +3,7 @@ import Login from '../Login/Login';
 import Logout from '../Logout/Logout';
 import './Header.css'
 import { CheckCircleTwoTone } from '@ant-design/icons';
-
+import {GiSlicedBread} from 'react-icons/gi'
 const Header = () => {
     const clientId = '174106107401-lv3ergmh2c99jna91om8mtvij3am2b5l.apps.googleusercontent.com'
 
@@ -11,10 +11,10 @@ const Header = () => {
     
     return (
         <div className='header'>
-            <h1><CheckCircleTwoTone twoToneColor="#52c41a" />Git It Done</h1>
-            <div>
-            <Login user={user} setUser={setUser} clientId={clientId} />
+            <div className='title'><GiSlicedBread  />Git It Done</div>
+            <div className='icons'>
             <Logout user={user} setUser={setUser} clientId={clientId} />
+            <Login user={user} setUser={setUser} clientId={clientId} />
             </div>
         </div>
     )

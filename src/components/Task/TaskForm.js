@@ -29,8 +29,8 @@ const TaskForm = ({ createTask }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
         const card = taskForm;
-        card.userId=JSON.parse(localStorage.getItem('user')).googleId
-        console.log(card.userId.googleId)
+        card.userId = JSON.parse(localStorage.getItem('user')).googleId;
+        card.workspaceId = JSON.parse(localStorage.getItem("workspace"))._id
         createTask(card);
         setTaskForm({
             title: "",

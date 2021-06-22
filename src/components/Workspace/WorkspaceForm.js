@@ -9,9 +9,9 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
     })
 
     const handleChange = (e) => {
-        console.log(e.target.name);
+        //console.log(e.target.name);
         setWorkspaceForm({...workspaceForm, [e.target.name]: e.target.value });
-        console.log(workspaceForm)
+        //console.log(workspaceForm)
       };
     
       
@@ -19,8 +19,9 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
         e.preventDefault()
         const space = workspaceForm;
         space.userId = JSON.parse(localStorage.getItem('user')).googleId
-        console.log(space)
         createWorkspace(space);
+        console.log(space)
+          
         setWorkspaceForm({
             title: "",
             statuses: "",
@@ -31,7 +32,7 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
     return (
         <div>
             <form  onSubmit={handleSubmit}>
-                <label>Title</label>
+                <label>Title </label>
                 <input type="text" name='title' placeholder='Add a workspace name' value={workspaceForm.title} onChange={handleChange}/>
                 <label>Statuses</label>
                 <input type="text" name='statuses' placeholder='Add a status' value={workspaceForm.statuses} onChange={handleChange}/>

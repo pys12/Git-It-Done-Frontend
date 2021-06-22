@@ -19,13 +19,20 @@ const Workspaces = () => {
         setWorkspaces(data);
     };
     const createWorkspace = async (workspaces) => {
-        await fetch(URL, {
+        const response = await fetch(URL, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(workspaces)
-        }).then(console.log(workspaces));
+        }).then(response => {
+          
+            response.json().then(workspaces => {
+              localStorage.setItem('workspace', JSON.stringify(workspaces))
+              console.log(JSON.parse(localStorage.getItem('workspace'))._id)
+            })
+          
+        });
 
         getWorkspaces();
     };
@@ -70,7 +77,7 @@ const Workspaces = () => {
       const spaces = []
       const space =  workspaces.forEach((workspace) => {
         if (workspace.userId.includes(userId)) {
-            spaces.push(<Workspace  workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />)
+          spaces.push(<Workspace workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />)
             
           }
       })

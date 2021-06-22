@@ -2,6 +2,9 @@ import React from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { Redirect } from 'react-router-dom'
 import './Login.css'
+import { BiLogInCircle } from "react-icons/bi";
+import { Tooltip } from 'antd';
+
 const Login = ({user,clientId,setUser}) => {
     
     
@@ -19,15 +22,16 @@ const Login = ({user,clientId,setUser}) => {
  
     
     return (
-        <div>
+        <div >
         {user === '' ?
             
          <GoogleLogin
          clientId={clientId}
-         render={renderProps => (
-            <button onClick={renderProps.onClick}>Login</button>
+        render={renderProps => (
+        <Tooltip title='Login' color={"#c2dada"}>
+             <span className='login-icon'><BiLogInCircle onClick={renderProps.onClick} /></span>
+        </Tooltip>
          )}
-          buttonText='Login'
           onSuccess={onSuccss}
           onFailure={onFailure}
           //cookiePolicy={'single_host_origin'}

@@ -10,7 +10,7 @@ const TaskContainer = (props) => {
   
     //const id = props.match.params._id
     const URL = "http://localhost:5000/api/tasks/";
-    //const URL2 = `http://localhost:5000/api/workspaces/`;
+    const URL2 = `http://localhost:5000/api/workspaces/`;
     
     const getTasks = async () => {
         const response = await fetch(URL);

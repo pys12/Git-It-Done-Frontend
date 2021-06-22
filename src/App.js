@@ -14,7 +14,6 @@ function App() {
     <div className="App">
       <Header />
       <Switch>
-        <Route path='/home/workspaces/:id' render={(rp) => (<TaskContainer {...rp} />)}/>
         <Route component={Home} path='/home'/>
         <Route component={Index} path='/' />
       </Switch>
