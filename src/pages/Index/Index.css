@@ -1,0 +1,7 @@
+.index {
+  text-align: center;
+}
+.images {
+  display: grid;
+  justify-items: center;
+}
