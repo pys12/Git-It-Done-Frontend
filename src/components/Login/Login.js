@@ -23,26 +23,25 @@ const Login = ({user,clientId,setUser}) => {
     
     return (
         <div >
-        {user === '' ?
-            
-         <GoogleLogin
-         clientId={clientId}
-        render={renderProps => (
-        <Tooltip title='Login' color={"#c2dada"}>
-             <span className='login-icon'><BiLogInCircle onClick={renderProps.onClick} /></span>
-        </Tooltip>
-         )}
-          onSuccess={onSuccss}
-          onFailure={onFailure}
-          //cookiePolicy={'single_host_origin'}
+            {user === '' ?
+                
+            <GoogleLogin
+            clientId={clientId}
+            render={renderProps => (
+                <Tooltip title='Login' color={"#c2dada"}>
+                    <span className='login-icon'><BiLogInCircle onClick={renderProps.onClick} /></span>
+                </Tooltip>
+            )}
+            onSuccess={onSuccss}
+            onFailure={onFailure}
+            //cookiePolicy={'single_host_origin'}
             />
-        : <div>
-            <Redirect to='/home' />
-            <img className='profilePic' src={user.imageUrl} alt="profilePic" />
-            {/* <h3>Welcome {user.name}</h3> */}
-        </div>
-        }
-        
+            : <div>
+                <Redirect to='/home' />
+                <img className='profilePic' src={user.imageUrl} alt="profilePic" />
+                {/* <h3>Welcome {user.name}</h3> */}
+            </div>
+            }
         </div>
     )
 }

@@ -28,7 +28,8 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
             
         })
         setShowCreate(!showCreate)
-    }
+      }
+  
     return (
         <div>
             <form  onSubmit={handleSubmit}>
@@ -36,10 +37,8 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
                 <input type="text" name='title' placeholder='Add a workspace name' value={workspaceForm.title} onChange={handleChange}/>
                 <label>Statuses</label>
                 <input type="text" name='statuses' placeholder='Add a status' value={workspaceForm.statuses} onChange={handleChange}/>
-                
                 <input type="submit" value='Add' />
             </form>
-            
         </div>
     )
 }

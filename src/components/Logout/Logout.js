@@ -19,16 +19,16 @@ const Logout = ({user,clientId,setUser}) => {
         <div>
             {user !== '' ?
             <div className='logout-icon'>
-            <GoogleLogout
-                clientId={clientId}
-                render={renderProps => (
-                    <Tooltip title='Logout' color={"#c2dada"}>
-                        <span><PoweroffOutlined onClick={renderProps.onClick} /></span>
-                    </Tooltip>
+                <GoogleLogout
+                    clientId={clientId}
+                    render={renderProps => (
+                        <Tooltip title='Logout' color={"#c2dada"}>
+                            <span><PoweroffOutlined onClick={renderProps.onClick} /></span>
+                        </Tooltip>
                     )}
-                onLogoutSuccess={logout}
-            />
-            <Redirect to='/home'/>  
+                    onLogoutSuccess={logout}
+                />
+                <Redirect to='/home'/>  
             </div> :
             <Redirect to='/' />
             }

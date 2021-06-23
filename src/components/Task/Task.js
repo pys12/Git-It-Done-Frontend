@@ -1,19 +1,23 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { Link } from 'react-router-dom';
 import { Space, Card } from 'antd';
 import { EditTwoTone, DeleteTwoTone  } from '@ant-design/icons';
+import './Task.css'
 
 const Task = ({ task, updateTask, deleteTask }) => {
+
     const [showEdit, setShowEdit] = useState(false)
+
     const onToggle =() => {
         setShowEdit(!showEdit)
+        
     }
 
     const removeTask = () => {
         deleteTask(task._id)
-        
     }
   
+    
     const [editForm, setEditForm] = useState(task)
 
     const handleChange = (e) => {
@@ -25,12 +29,17 @@ const Task = ({ task, updateTask, deleteTask }) => {
         updateTask(editForm, task._id)
         setShowEdit(!setShowEdit)
     }
+
+    useEffect(() => {
+        let isMounted = true;
+        setEditForm(task)
+    }, [task]);
     
     return (
         <div>
             <Space direction="vertical">
                 <Card title={task.status} style={{ width: 300 }}>
-                    <div>
+                    <div className='link'>
                         <Link to={`/home/tasks/${task._id}`}>{task.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle}/><DeleteTwoTone twoToneColor="#52c41a" onClick={removeTask}/>
                     </div>
                     <div>{task.description}</div>
@@ -47,7 +56,7 @@ const Task = ({ task, updateTask, deleteTask }) => {
                     }
                 </Card>
             </Space>
-    </div>
+        </div>
     )
 }
 

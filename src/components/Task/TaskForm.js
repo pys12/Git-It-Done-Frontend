@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { Modal, Button } from 'antd';
 
-const TaskForm = ({ createTask }) => {
+const TaskForm = ({ createTask, workspaceId }) => {
      
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -30,7 +30,7 @@ const TaskForm = ({ createTask }) => {
         e.preventDefault()
         const card = taskForm;
         card.userId = JSON.parse(localStorage.getItem('user')).googleId;
-        card.workspaceId = JSON.parse(localStorage.getItem("workspace"))._id
+        card.workspaceId = workspaceId;
         createTask(card);
         setTaskForm({
             title: "",
@@ -42,19 +42,19 @@ const TaskForm = ({ createTask }) => {
 
     }
     return (
-            <div>
+          <div>
              <Button type="primary" onClick={showModal}> Create </Button>
              <Modal title="Create a task" visible={isModalVisible} onOk={handleSubmit} onCancel={handleCancel}>
-             <form>
-                <p><label>Title</label></p>
-                <p><input type="text" name='title' placeholder='Add a task' value={taskForm.title} onChange={handleChange}/></p>
-                <p><label>Description</label></p>
-                <p> <input type="text" name='description' placeholder='Add a detailed description' value={taskForm.description} onChange={handleChange}/></p>
-                <p><label>Status</label></p>
-                <p> <input type="text" name='status' placeholder='Pick a status' value={taskForm.status} onChange={handleChange}/></p>
-            </form>
+              <form>
+                  <p><label>Title</label></p>
+                  <p><input type="text" name='title' placeholder='Add a task' value={taskForm.title} onChange={handleChange}/></p>
+                  <p><label>Description</label></p>
+                  <p> <input type="text" name='description' placeholder='Add a detailed description' value={taskForm.description} onChange={handleChange}/></p>
+                  <p><label>Status</label></p>
+                  <p> <input type="text" name='status' placeholder='Pick a status' value={taskForm.status} onChange={handleChange}/></p>
+              </form>
             </Modal>
-            </div>
+          </div>
          
         
     )

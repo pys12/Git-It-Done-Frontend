@@ -1,21 +1,25 @@
-import React from 'react'
-import Sidebar from '../../components/Sidebar/Sidebar'
-import TaskContainer from '../../components/Task/TaskContainer'
-import './Home.css'
-import { Layout } from 'antd'
-import { Link } from 'react-router-dom'
-const Home = () => {
-    const { Content, Sider } = Layout;
-    return (
-        <div className='home'>
-            <Layout >
-                <Sider ><Sidebar /></Sider>
-                <TaskContainer />
-                
-            </Layout  >
-                
-        </div>
-    )
-}
+import React from "react";
+import Sidebar from "../../components/Sidebar/Sidebar";
+import TaskContainer from "../../components/Task/TaskContainer";
+import "./Home.css";
+import { Layout } from "antd";
+import { Route } from "react-router-dom";
 
-export default Home
+const Home = () => {
+  const { Sider } = Layout;
+  return (
+    <div className="home">
+      <Layout>
+        <Sider>
+          <Sidebar />
+        </Sider>
+        <Route
+          path="/home/workspaces/:id"
+          render={(rp) => <TaskContainer {...rp} />}
+        />
+      </Layout>
+    </div>
+  );
+};
+
+export default Home;
