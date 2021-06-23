@@ -2,16 +2,17 @@ import React,{useState} from 'react'
 import { Link } from 'react-router-dom';
 import { EditTwoTone,DeleteTwoTone } from '@ant-design/icons';
 import './Workspace.css'
-const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
-    
-    
+
+
+const Workspace = ({ index, workspace, updateWorkspace, deleteWorkspace }) => {
+
     const [showEdit, setShowEdit] = useState(false)
+  
     const onToggle =() => {
         setShowEdit(!showEdit)
-  }
+    }
     const removeWorkspace = () => {
-        deleteWorkspace(workspace._id)
-        
+        deleteWorkspace(workspace._id)   
     }
   
     const [editWorkspaceForm, setEditWorkspaceForm] = useState(workspace)
@@ -25,11 +26,10 @@ const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
         updateWorkspace(editWorkspaceForm, workspace._id)
         setShowEdit(!showEdit)
     }
+   
     return (
         <div className='workspace'>
-            <div>
             <Link to={`/home/workspaces/${workspace._id}`}>{workspace.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle} /><DeleteTwoTone twoToneColor="#52c41a" onClick={removeWorkspace} />
-            </div>
             {/* <div>{workspace.statuses}</div> */}
             {showEdit &&
              <form onSubmit={handleSubmit}>
@@ -40,8 +40,7 @@ const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
                 <input type="submit" value='Update' />
             </form>
             }
-            
-    </div>
+        </div>
     )
 }
 

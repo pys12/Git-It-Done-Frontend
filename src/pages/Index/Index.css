@@ -1,7 +1,7 @@
-.index{
-    text-align: center;
+.index {
+  text-align: center;
 }
-.images{
-    display: grid;
-    justify-items: center;
+.images {
+  display: grid;
+  justify-items: center;
 }
