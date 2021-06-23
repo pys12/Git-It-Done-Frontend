@@ -4,7 +4,7 @@ import Workspace from './Workspace'
 
 import { PlusCircleTwoTone } from '@ant-design/icons';
 const Workspaces = () => {
-  const [workspaces, setWorkspaces] = useState(null)
+  const [workspaces, setWorkspaces] = useState('')
   
   const [showCreate, setShowCreate] = useState(false)
   const onToggle =() => {
@@ -19,19 +19,12 @@ const Workspaces = () => {
         setWorkspaces(data);
     };
     const createWorkspace = async (workspaces) => {
-        const response = await fetch(URL, {
+        await fetch(URL, {
           method: "post",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(workspaces)
-        }).then(response => {
-          
-            response.json().then(workspaces => {
-              localStorage.setItem('workspace', JSON.stringify(workspaces))
-              console.log(JSON.parse(localStorage.getItem('workspace'))._id)
-            })
-          
         });
 
         getWorkspaces();
@@ -75,9 +68,9 @@ const Workspaces = () => {
     const loaded = () => {
       const userId = JSON.parse(localStorage.getItem('user')).googleId
       const spaces = []
-      const space =  workspaces.forEach((workspace) => {
+      const space =  workspaces.forEach((workspace,index) => {
         if (workspace.userId.includes(userId)) {
-          spaces.push(<Workspace workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />)
+          spaces.push(<Workspace key={index} workspace={workspace} updateWorkspace={updateWorkspace} deleteWorkspace={deleteWorkspace} />)
             
           }
       })

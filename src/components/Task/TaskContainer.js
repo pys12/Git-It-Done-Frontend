@@ -5,18 +5,20 @@ import { PlusCircleTwoTone } from '@ant-design/icons';
 import Search from '../Search/Search'
 const TaskContainer = (props) => {
   
-  const [tasks, setTasks] = useState(null)
+  const [tasks, setTasks] = useState('')
   
-  
-    //const id = props.match.params._id
-    const URL = "http://localhost:5000/api/tasks/";
-    const URL2 = `http://localhost:5000/api/workspaces/`;
+  const workspaceId = props.match.params.id
+
+  //console.log(workspaceId)
+    //const URL = "http://localhost:5000/api/tasks/";
+    const URL = `http://localhost:5000/api/workspaces/${workspaceId}/alltasks`;
     
-    const getTasks = async () => {
-        const response = await fetch(URL);
-        const data = await response.json();
-        setTasks(data);
-    };
+  const getTasks = async () => {
+    const response = await fetch(URL);
+    const data = await response.json();
+    console.log(data)
+    setTasks(data);
+  };
   
     const createTask = async (task,id) => {
         await fetch(URL, {
@@ -67,10 +69,10 @@ const TaskContainer = (props) => {
       const userId = JSON.parse(localStorage.getItem('user')).googleId
       return tasks.map((task, index) => {
          //console.log(userId)
-        if (task.userId === userId) {
+        //if (task.userId === userId) {
           return <Task key={index} tasks={tasks} task={task} updateTask={updateTask} deleteTask={deleteTask} />
-        }
-      })
+        })
+      //})
     }
     const loading = () => {
         return <h1>loading now..</h1>
@@ -78,9 +80,9 @@ const TaskContainer = (props) => {
     
     return (
         <div>
-            <Search search={searchTask}/>
-            <TaskForm createTask={createTask} />
-            {tasks ? loaded() : loading()}
+          <Search search={searchTask}/>
+          <TaskForm createTask={createTask} workspaceId={workspaceId}/>
+          {tasks ? loaded() : loading()}
         </div>
     )
 }

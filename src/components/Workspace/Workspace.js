@@ -30,7 +30,7 @@ const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
             <div>
             <Link to={`/home/workspaces/${workspace._id}`}>{workspace.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle} /><DeleteTwoTone twoToneColor="#52c41a" onClick={removeWorkspace} />
             </div>
-            <div>{workspace.statuses}</div>
+            {/* <div>{workspace.statuses}</div> */}
             {showEdit &&
              <form onSubmit={handleSubmit}>
                 <label>Title</label>

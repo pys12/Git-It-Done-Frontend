@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import { Modal, Button } from 'antd';
 
-const TaskForm = ({ createTask }) => {
+const TaskForm = ({ createTask, workspaceId }) => {
      
     const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -30,7 +30,7 @@ const TaskForm = ({ createTask }) => {
         e.preventDefault()
         const card = taskForm;
         card.userId = JSON.parse(localStorage.getItem('user')).googleId;
-        card.workspaceId = JSON.parse(localStorage.getItem("workspace"))._id
+        card.workspaceId = workspaceId;
         createTask(card);
         setTaskForm({
             title: "",
