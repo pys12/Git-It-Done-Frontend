@@ -12,7 +12,7 @@ const Logout = ({user,clientId,setUser}) => {
         console.log('logout success!')
         setUser('')
         console.log(JSON.parse(localStorage.getItem("user")))
-        localStorage.removeItem("user")
+        localStorage.clear();
     }
     
     return (
