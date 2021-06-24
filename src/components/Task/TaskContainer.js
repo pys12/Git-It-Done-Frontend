@@ -8,8 +8,8 @@ const TaskContainer = (props) => {
   const workspaceId = props.match.params.id;
   //console.log(workspaceId)
 
-  const taskURL = "http://localhost:5000/api/tasks/";
-  const URL = `http://localhost:5000/api/workspaces/${workspaceId}/alltasks`;
+  const taskURL = "https://git-it-done-backend.herokuapp.com/api/tasks/";
+  const URL = `https://git-it-done-backend.herokuapp.com/api/workspaces/${workspaceId}/alltasks`;
 
   const getTasks = async () => {
     const response = await fetch(URL);
