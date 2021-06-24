@@ -12,7 +12,7 @@ const Workspaces = () => {
     setShowCreate(!showCreate);
   };
 
-  const URL = "http://localhost:5000/api/workspaces/";
+  const URL = "https://git-it-done-backend.herokuapp.com/api/workspaces/";
 
   const getWorkspaces = async () => {
     const response = await fetch(URL);
