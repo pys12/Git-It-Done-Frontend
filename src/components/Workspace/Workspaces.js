@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WorkspaceForm from "./WorkspaceForm";
 import Workspace from "./Workspace";
-import { PlusCircleTwoTone } from "@ant-design/icons";
+import './Workspace.css'
 
 const Workspaces = () => {
   const [workspaces, setWorkspaces] = useState("");
@@ -86,10 +86,9 @@ const Workspaces = () => {
   };
 
   return (
-    <div>
-      <div>
-        Create Workspace
-        <PlusCircleTwoTone twoToneColor="#52c41a" onClick={onToggle} />
+    <>
+      <div className='create-btn' onClick={onToggle}>
+        Create Workspaces
       </div>
       {showCreate && (
         <WorkspaceForm
@@ -99,7 +98,7 @@ const Workspaces = () => {
         />
       )}
       {workspaces ? loaded() : loading()}
-    </div>
+    </>
   );
 };
 

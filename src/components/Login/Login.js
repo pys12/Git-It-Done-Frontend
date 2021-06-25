@@ -34,12 +34,15 @@ const Login = ({user,clientId,setUser}) => {
             )}
             onSuccess={onSuccss}
             onFailure={onFailure}
-            //cookiePolicy={'single_host_origin'}
             />
-            : <div>
-                <Redirect to='/home' />
-                <img className='profilePic' src={user.imageUrl} alt="profilePic" />
-                {/* <h3>Welcome {user.name}</h3> */}
+            :
+            <div>
+                    <Redirect to='/home' />
+                    <Tooltip title={user.name} color={"#c2dada"}>
+                        <span>
+                           <img className='profilePic' src={user.imageUrl} alt="profilePic" />
+                        </span>
+                    </Tooltip>
             </div>
             }
         </div>

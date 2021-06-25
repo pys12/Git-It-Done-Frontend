@@ -43,8 +43,8 @@ const TaskForm = ({ createTask, workspaceId }) => {
     }
     return (
           <div>
-             <Button type="primary" onClick={showModal}> Create </Button>
-             <Modal title="Create a task" visible={isModalVisible} onOk={handleSubmit} onCancel={handleCancel}>
+             <Button onClick={showModal}>Add a task</Button>
+             <Modal title="Add a task" visible={isModalVisible} onOk={handleSubmit} onCancel={handleCancel}>
               <form>
                   <p><label>Title</label></p>
                   <p><input type="text" name='title' placeholder='Add a task' value={taskForm.title} onChange={handleChange}/></p>

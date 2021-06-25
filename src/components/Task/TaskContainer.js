@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Task from "./Task";
 import TaskForm from "./TaskForm";
-import Search from "../Search/Search";
+import SearchForm from "../Search/SearchForm";
+import './Task.css'
+import { Empty } from 'antd';
+
 const TaskContainer = (props) => {
-  const [tasks, setTasks] = useState("");
+  const [tasks, setTasks] = useState([]);
 
   const workspaceId = props.match.params.id;
-  //console.log(workspaceId)
+  //console.log(props.match);
 
   const taskURL = "https://git-it-done-backend.herokuapp.com/api/tasks/";
   const URL = `https://git-it-done-backend.herokuapp.com/api/workspaces/${workspaceId}/alltasks`;
@@ -14,7 +17,7 @@ const TaskContainer = (props) => {
   const getTasks = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    //console.log(data)
+    console.log(data) 
     setTasks(data);
   };
 
@@ -55,7 +58,7 @@ const TaskContainer = (props) => {
     } else {
       setTasks(
         tasks.filter(
-          (searched) =>
+          (searched) => 
             searched.title.toLowerCase() === searchTerm.toLowerCase()
         )
       );
@@ -63,40 +66,32 @@ const TaskContainer = (props) => {
   };
 
   useEffect(() => {
-    let isMounted = true;
     getTasks();
   }, [workspaceId]);
 
-  const loaded = () => {
-    //const userId = JSON.parse(localStorage.getItem('user')).googleId
-    return tasks.map((task, index) => {
-      //console.log(userId)
-      //if (task.userId === userId) {
-        console.log(task)
-      return (
-        <Task
-          key={index}
-          task={task}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-        />
-      );
-      
-    });
-    //})
-  };
+  console.log(tasks.length > 0);
   
-  const loading = () => {
-    return <h1>loading now..</h1>;
-  };
 
   return (
-    <div>
-      <Search search={searchTask} />
+    <>
+      
+      <div className='task-board-header'>
       <TaskForm createTask={createTask} workspaceId={workspaceId} />
-      {tasks ? loaded() : loading()}
-    </div>
-  );
+      <SearchForm className='searchBar' search={searchTask} />
+      </div>
+
+       <div className='tasks'>
+        {tasks.length >  0 ?
+          <>
+          {tasks.map((task, index) => (
+          <Task key={index} task={task} updateTask={updateTask} deleteTask={deleteTask} />
+          ))}
+          </> : <Empty className='empty' description={<span>No tasks</span>}/>}
+       </div>
+      
+      
+    </>
+  )
 };
 
 export default TaskContainer;
