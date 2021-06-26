@@ -38,6 +38,10 @@ a:visited{
   outline:none
 
 }
+.update-icon{
+  background: none;
+  border: none;
+}
 .update-btn:hover{
   color: rgb(124, 187, 187);
   
