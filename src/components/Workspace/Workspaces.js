@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import WorkspaceForm from "./WorkspaceForm";
 import Workspace from "./Workspace";
-import { PlusCircleTwoTone } from "@ant-design/icons";
+import './Workspace.css'
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const Workspaces = () => {
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+  
   const [workspaces, setWorkspaces] = useState("");
 
   const [showCreate, setShowCreate] = useState(false);
@@ -82,14 +86,13 @@ const Workspaces = () => {
   };
 
   const loading = () => {
-    return <h1>loading now..</h1>;
+    return <Spin indicator={antIcon} />
   };
 
   return (
-    <div>
-      <div>
-        Create Workspace
-        <PlusCircleTwoTone twoToneColor="#52c41a" onClick={onToggle} />
+    <>
+      <div className='create-btn' onClick={onToggle}>
+        Create Workspaces
       </div>
       {showCreate && (
         <WorkspaceForm
@@ -99,7 +102,7 @@ const Workspaces = () => {
         />
       )}
       {workspaces ? loaded() : loading()}
-    </div>
+    </>
   );
 };
 

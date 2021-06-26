@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Task from "./Task";
 import TaskForm from "./TaskForm";
-import Search from "../Search/Search";
-const TaskContainer = (props) => {
-  const [tasks, setTasks] = useState("");
+import SearchForm from "../Search/SearchForm";
+import './Task.css'
+import { Empty } from 'antd';
 
+const TaskContainer = (props) => {
+  const [tasks, setTasks] = useState([]);
+  const [searchResult, setSearchResult] = useState([])
+  
   const workspaceId = props.match.params.id;
-  //console.log(workspaceId)
+  //console.log(props.match);
 
   const taskURL = "https://git-it-done-backend.herokuapp.com/api/tasks/";
   const URL = `https://git-it-done-backend.herokuapp.com/api/workspaces/${workspaceId}/alltasks`;
@@ -14,8 +18,9 @@ const TaskContainer = (props) => {
   const getTasks = async () => {
     const response = await fetch(URL);
     const data = await response.json();
-    //console.log(data)
+    console.log(data) 
     setTasks(data);
+    setSearchResult(data)
   };
 
   const createTask = async (task, id) => {
@@ -51,52 +56,43 @@ const TaskContainer = (props) => {
   const searchTask = (searchTerm) => {
     //console.log('search term:'+ searchTerm)
     if (searchTerm === "") {
-      setTasks(tasks);
+      setTasks(searchResult);
     } else {
       setTasks(
-        tasks.filter(
-          (searched) =>
-            searched.title.toLowerCase() === searchTerm.toLowerCase()
+        searchResult.filter(
+          (searched) => 
+            searched.title.toLowerCase() === searchTerm.toLowerCase() || searched.description.toLowerCase() === searchTerm.toLowerCase() || searched.status.toLowerCase() === searchTerm.toLowerCase()
         )
       );
     }
   };
 
   useEffect(() => {
-    let isMounted = true;
     getTasks();
   }, [workspaceId]);
 
-  const loaded = () => {
-    //const userId = JSON.parse(localStorage.getItem('user')).googleId
-    return tasks.map((task, index) => {
-      //console.log(userId)
-      //if (task.userId === userId) {
-        console.log(task)
-      return (
-        <Task
-          key={index}
-          task={task}
-          updateTask={updateTask}
-          deleteTask={deleteTask}
-        />
-      );
-      
-    });
-    //})
-  };
-  
-  const loading = () => {
-    return <h1>loading now..</h1>;
-  };
+    
 
   return (
-    <div>
-      <Search search={searchTask} />
+    <>
+      
+      <div className='task-board-header'>
       <TaskForm createTask={createTask} workspaceId={workspaceId} />
-      {tasks ? loaded() : loading()}
-    </div>
-  );
+      <SearchForm className='searchBar' search={searchTask} />
+      </div>
+
+       <div className='tasks'>
+        {tasks.length >  0 ?
+          <>
+          {tasks.map((task, index) => (
+          <Task key={index} task={task} updateTask={updateTask} deleteTask={deleteTask} />
+          ))}
+          </> : <Empty className='empty' description={<span>No tasks</span>}/>}
+       </div>
+      
+      
+    </>
+  )
 };
 
 export default TaskContainer;
