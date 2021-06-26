@@ -15,7 +15,7 @@ const Home = () => {
               <Sidebar />
             </Sider>
             <Content style={{ padding: '20px 30px', minHeight: '280px', marginLeft:100 }}>
-              <Route path="/home/workspaces/:id" render={(rp) => <TaskContainer {...rp} />}/>
+              <Route path="/home/workspaces/:id" render={(rp) => <TaskContainer {...rp} key={Date.now()} />}/>
             </Content>
           </Layout>
         </Content>

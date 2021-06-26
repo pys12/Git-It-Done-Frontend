@@ -2,8 +2,12 @@ import React, { useState, useEffect } from "react";
 import WorkspaceForm from "./WorkspaceForm";
 import Workspace from "./Workspace";
 import './Workspace.css'
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const Workspaces = () => {
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+  
   const [workspaces, setWorkspaces] = useState("");
 
   const [showCreate, setShowCreate] = useState(false);
@@ -82,7 +86,7 @@ const Workspaces = () => {
   };
 
   const loading = () => {
-    return <h1>loading now..</h1>;
+    return <Spin indicator={antIcon} />
   };
 
   return (

@@ -7,7 +7,8 @@ import { Empty } from 'antd';
 
 const TaskContainer = (props) => {
   const [tasks, setTasks] = useState([]);
-
+  const [searchResult, setSearchResult] = useState([])
+  
   const workspaceId = props.match.params.id;
   //console.log(props.match);
 
@@ -19,6 +20,7 @@ const TaskContainer = (props) => {
     const data = await response.json();
     console.log(data) 
     setTasks(data);
+    setSearchResult(data)
   };
 
   const createTask = async (task, id) => {
@@ -54,12 +56,12 @@ const TaskContainer = (props) => {
   const searchTask = (searchTerm) => {
     //console.log('search term:'+ searchTerm)
     if (searchTerm === "") {
-      setTasks(tasks);
+      setTasks(searchResult);
     } else {
       setTasks(
-        tasks.filter(
+        searchResult.filter(
           (searched) => 
-            searched.title.toLowerCase() === searchTerm.toLowerCase()
+            searched.title.toLowerCase() === searchTerm.toLowerCase() || searched.description.toLowerCase() === searchTerm.toLowerCase() || searched.status.toLowerCase() === searchTerm.toLowerCase()
         )
       );
     }
@@ -69,8 +71,7 @@ const TaskContainer = (props) => {
     getTasks();
   }, [workspaceId]);
 
-  console.log(tasks.length > 0);
-  
+    
 
   return (
     <>

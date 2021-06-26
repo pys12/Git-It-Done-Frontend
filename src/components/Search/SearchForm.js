@@ -23,9 +23,9 @@ const SearchForm = ({search}) => {
     
     return (
         <>
-            <form className='searchForm'>
+            <form className='searchForm' onSubmit={handleSubmit}>
             <input className='inputBar' type="text" name="searchTerm" placeholder='Search by task title...' value={searchForm.searchTerm} onChange={handleChange} />
-            <FileSearchOutlined style={{ fontSize: '30px', color:'gray' }} onClick={handleSubmit} />
+            <FileSearchOutlined style={{ fontSize: '30px', color:'gray' }} />
             </form>
         </>
     )

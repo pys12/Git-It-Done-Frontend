@@ -1,7 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 .index {
   text-align: center;
+  font-family: 'Walter Turncoat', cursive;
+  font-size: 40px;
+
 }
 .images {
   display: grid;
   justify-items: center;
+  
+}
+img{
+  width: 200px;
+  
+}
+.img3{
+  width: 270px;
 }
