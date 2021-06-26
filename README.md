@@ -2,7 +2,7 @@
 [Git It Done](https://git-it-done-gid.netlify.app/)
 
 ## Collaborators
-- [Asher Schulman](https://github.com/asher8346)
+- [Asher Schulman](https://github.com/asher-schulman)
 - [Peiyi Shi](https://github.com/pys12 )
 - [Handsome Vang](https://github.com/handwidhtv8)
 
