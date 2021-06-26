@@ -1,16 +1,15 @@
 import React,{useState,useEffect} from 'react'
-import { Link } from 'react-router-dom';
 import { Space, Card } from 'antd';
 import { EditTwoTone, DeleteTwoTone  } from '@ant-design/icons';
 import './Task.css'
 
 const Task = ({ task, updateTask, deleteTask }) => {
-
+    const [showContent, setShowContent] = useState(true)
     const [showEdit, setShowEdit] = useState(false)
 
     const onToggle =() => {
         setShowEdit(!showEdit)
-        
+        setShowContent(!showContent)
     }
 
     const removeTask = () => {
@@ -28,30 +27,35 @@ const Task = ({ task, updateTask, deleteTask }) => {
         e.preventDefault()
         updateTask(editForm, task._id)
         setShowEdit(!setShowEdit)
+        setShowContent(!showContent)
+
     }
 
     useEffect(() => {
-        let isMounted = true;
         setEditForm(task)
     }, [task]);
     
     return (
         <div>
-            <Space direction="vertical">
-                <Card title={task.status} style={{ width: 300 }}>
-                    <div className='link'>
-                        <Link to={`/home/tasks/${task._id}`}>{task.title}</Link><EditTwoTone twoToneColor="#52c41a" onClick={onToggle}/><DeleteTwoTone twoToneColor="#52c41a" onClick={removeTask}/>
+            <Space direction="horizontal">
+                <Card title={task.status} style={{ width: 300, height:200, margin:10 }} extra={<DeleteTwoTone twoToneColor="#5aadad" onClick={removeTask} />}>
+                    {showContent &&
+                    <>
+                    <div className='task-title' >
+                        {task.title}<EditTwoTone twoToneColor="#5aadad" onClick={onToggle}/>
                     </div>
-                    <div>{task.description}</div>
+                    <div className='task-description' >{task.description}</div>
+                    </>
+                    }
                     {showEdit &&
-                        <form onSubmit={handleSubmit}>
-                            <label>Title</label>
+                        <form className='editForm' onSubmit={handleSubmit}>
+                            <label>Title:</label>
                             <input type="text" name='title' placeholder='Add a task' value={editForm.title} onChange={handleChange} />
-                            <label>Description</label>
+                            <label>Description:</label>
                             <input type="text" name='description' placeholder='Add a detailed description' value={editForm.description} onChange={handleChange} />
-                            <label>Status</label>
+                            <label>Status:</label>
                             <input type="text" name='status' placeholder='Pick a status' value={editForm.status} onChange={handleChange} />
-                            <input type="submit" value='Update' />
+                            <input className='update-btn' type="submit" value='Update' />
                         </form>
                     }
                 </Card>

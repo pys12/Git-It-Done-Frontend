@@ -1,0 +1,12 @@
+.searchForm{
+    display: flex;
+}
+
+.search-icon{
+    background: none;
+    border:none;
+}
+.inputBar{
+    border: 2px solid rgba(153, 152, 152, 0.867);
+    border-radius: 8px;
+}

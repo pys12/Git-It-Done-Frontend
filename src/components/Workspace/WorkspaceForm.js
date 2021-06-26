@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-
+import { Button } from 'antd';
+import './Workspace.css'
 
 const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
 
@@ -32,12 +33,12 @@ const WorkspaceForm = ({ createWorkspace,showCreate,setShowCreate}) => {
   
     return (
         <div>
-            <form  onSubmit={handleSubmit}>
+            <form className='create-form' onSubmit={handleSubmit} >
                 <label>Title </label>
-                <input type="text" name='title' placeholder='Add a workspace name' value={workspaceForm.title} onChange={handleChange}/>
-                <label>Statuses</label>
-                <input type="text" name='statuses' placeholder='Add a status' value={workspaceForm.statuses} onChange={handleChange}/>
-                <input type="submit" value='Add' />
+                <input type="text" name='title' size='10' value={workspaceForm.title} onChange={handleChange}/>
+                {/* <label>Statuses</label>
+                <input type="text" name='statuses' size='8' value={workspaceForm.statuses} onChange={handleChange}/> */}
+                <button className='update-icon' type='submit'><Button>Create</Button></button>
             </form>
         </div>
     )
