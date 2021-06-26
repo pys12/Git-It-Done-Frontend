@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# Git-It-Done-Frontend
-=======
 # Project 3
 [Git It Done](https://git-it-done-gid.netlify.app/)
 
@@ -38,4 +35,3 @@ A full-stack application that allows users to create workspaces, and tasks insid
 - improve search function by searching only using keyword
 - add tags/flags to tasks
 
->>>>>>> 54aa01aee7c498f9e4d39e7f2c3b1c0cc55afc38
