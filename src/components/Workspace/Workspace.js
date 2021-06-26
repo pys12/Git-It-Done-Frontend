@@ -32,12 +32,12 @@ const Workspace = ({ workspace, updateWorkspace, deleteWorkspace }) => {
             <Link to={`/home/workspaces/${workspace._id}`}>{workspace.title}</Link>
             <EditTwoTone twoToneColor="#5aadad" onClick={onToggle} /><DeleteTwoTone twoToneColor="#5aadad" onClick={removeWorkspace} />
             {showEdit &&
-             <form >
+             <form onSubmit={handleSubmit}>
                 <label>Title</label>
                 <input type="text" name='title'  value={editWorkspaceForm.title} onChange={handleChange} size="10"/>
                 {/* <label>Statuses</label>
                 <input type="text" name='statuses' value={editWorkspaceForm.statuses} onChange={handleChange} size="8"/> */}
-                <Button className='update-btn' onClick={handleSubmit}>Update</Button>
+                <button className='update-icon' type='submit'><Button className='update-btn' >Update</Button></button>
             </form>
             }
         </div>
